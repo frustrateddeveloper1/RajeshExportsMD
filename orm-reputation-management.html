@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Reputation Management - Shlokin Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .graphic-container {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 40%, #0d1b2a 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        /* Background decorative elements */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.05;
+        }
+
+        .bg-circle-1 {
+            width: 600px;
+            height: 600px;
+            background: #4ecdc4;
+            top: -200px;
+            right: -200px;
+        }
+
+        .bg-circle-2 {
+            width: 400px;
+            height: 400px;
+            background: #ff6b6b;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        /* Grid pattern */
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(78, 205, 196, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(78, 205, 196, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Top section - Warning icons */
+        .warning-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .warning-card {
+            width: 140px;
+            height: 140px;
+            background: rgba(255, 107, 107, 0.08);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: transform 0.3s;
+        }
+
+        .warning-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .warning-icon {
+            font-size: 40px;
+        }
+
+        .warning-label {
+            font-size: 11px;
+            color: #ff6b6b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            padding: 0 8px;
+        }
+
+        /* Main content */
+        .main-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #4ecdc4;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .headline {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .headline .highlight {
+            color: #4ecdc4;
+        }
+
+        .headline .negative {
+            color: #ff6b6b;
+        }
+
+        .subtext {
+            font-size: 18px;
+            color: #8899aa;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Shield icon */
+        .shield-section {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .shield {
+            width: 100px;
+            height: 120px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .shield svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(78, 205, 196, 0.3));
+        }
+
+        /* Solution pills */
+        .solutions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .pill {
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .pill-1 {
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.4);
+            color: #4ecdc4;
+        }
+
+        .pill-2 {
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.4);
+            color: #a29bfe;
+        }
+
+        .pill-3 {
+            background: rgba(253, 203, 110, 0.1);
+            border: 1px solid rgba(253, 203, 110, 0.4);
+            color: #fdcb6e;
+        }
+
+        /* CTA */
+        .cta {
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .cta-sub {
+            font-size: 15px;
+            color: #4ecdc4;
+            font-weight: 500;
+        }
+
+        /* Bottom branding */
+        .branding {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .brand-divider {
+            width: 1px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .brand-tagline {
+            font-size: 12px;
+            color: #8899aa;
+            letter-spacing: 1px;
+        }
+
+        /* Decorative line */
+        .accent-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4ecdc4, #6c5ce7, #ff6b6b);
+        }
+    </style>
+</head>
+<body>
+    <div class="graphic-container">
+        <div class="accent-line"></div>
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+        <div class="grid-pattern"></div>
+
+        <!-- Warning Cards -->
+        <div class="warning-section">
+            <div class="warning-card">
+                <div class="warning-icon">&#128240;</div>
+                <div class="warning-label">Negative Article</div>
+            </div>
+            <div class="warning-card">
+                <div class="warning-icon">&#11088;</div>
+                <div class="warning-label">Bad Review</div>
+            </div>
+            <div class="warning-card">
+                <div class="warning-icon">&#128172;</div>
+                <div class="warning-label">Viral Conversation</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="tagline">Online Reputation Management</div>
+            <h1 class="headline">
+                One <span class="negative">negative moment</span> can reshape<br>
+                how people see your <span class="highlight">brand</span>.
+            </h1>
+            <p class="subtext">
+                Your brand deserves proactive reputation management, not just damage control after a crisis. Be seen for the right reasons.
+            </p>
+        </div>
+
+        <!-- Shield -->
+        <div class="shield-section">
+            <div class="shield">
+                <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 5 L90 25 L90 60 C90 85 70 105 50 115 C30 105 10 85 10 60 L10 25 Z" 
+                          fill="rgba(78, 205, 196, 0.1)" 
+                          stroke="#4ecdc4" 
+                          stroke-width="2"/>
+                    <path d="M35 60 L45 72 L68 48" 
+                          stroke="#4ecdc4" 
+                          stroke-width="4" 
+                          stroke-linecap="round" 
+                          stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Solution Pills -->
+        <div class="solutions">
+            <div class="pill pill-1">Improve Online Visibility</div>
+            <div class="pill pill-2">Manage Brand Perception</div>
+            <div class="pill pill-3">Strengthen Positive Presence</div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">Your brand deserves to be seen for the right reasons.</div>
+        <div class="cta-sub">Shlokin Digital &mdash; ORM Solutions</div>
+
+        <!-- Branding -->
+        <div class="branding">
+            <span class="brand-name">SHLOKIN DIGITAL</span>
+            <div class="brand-divider"></div>
+            <span class="brand-tagline">Proactive Reputation Management</span>
+        </div>
+    </div>
+</body>
+</html>
